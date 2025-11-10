@@ -1,0 +1,23 @@
+##################
+# MedScore Configuration File
+##################
+
+# --- Main Input/Output Files ---
+# Can be overridden by command line arguments
+input_file: "input_data.json"
+output_dir: "."
+response_key: "response"
+
+# --- Decomposition Configuration ---
+decomposer:
+  type: "medscore"
+  model_name: "gpt-4o-mini"
+  server_path: "https://api.openai.com/v1"
+  api_key: !env OPENAI_API_KEY
+
+# --- Verification Configuration ---
+verifier:
+  type: "internal" # Options: internal, medrag, provided
+  model_name: "gpt-4o"
+  server_path: "https://api.openai.com/v1"
+
