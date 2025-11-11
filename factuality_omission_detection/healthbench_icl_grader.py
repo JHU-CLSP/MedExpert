@@ -166,10 +166,8 @@ class HealthBenchResponseGrader(APIModel):
         completion = await self.client.chat.completions.create(
             messages=messages,
             model=self.model_name,
-            seed=42,
-            max_tokens=2048,
-            temperature=0.2,
-            response_format={"type": "json_object"}
+            response_format={"type": "json_object"},
+            **self.default_params
         )
         return completion
 
@@ -249,7 +247,9 @@ Return your answer in JSONLines format. Do not include any other text in the res
         messages = [{"role": "user", "content": formatted_input}]
 
         completion = await self.client.chat.completions.create(
-            messages=messages, model=self.model_name, seed=42, max_tokens=2048, temperature=0.2
+            messages=messages,
+            model=self.model_name,
+            **self.default_params
         )
         return completion
 
@@ -396,7 +396,7 @@ async def main():
                 print(f"    - Met?: {criteria_item['criteria_met']}")
                 print(f"    - Explanation: {criteria_item['explanation']}")
 
-        output_file = Path(args.output_dir) / "completeness_results.jsonl"
+        output_file = Path(args.output_dir) / "omissions_healthbench-icl_output.jsonl"
         with jsonlines.open(output_file, "w") as writer:
             writer.write_all(graded_responses)
         logger.info(f"\nFull results saved to {output_file}")

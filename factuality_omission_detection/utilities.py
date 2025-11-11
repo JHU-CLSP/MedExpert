@@ -58,6 +58,18 @@ class APIModel(ABC):
         if len(kwargs) > 0:
             logger.warning(f"Unused arguments: {kwargs}")
 
+        # Set default decoding parameters
+        self.default_params = {
+            "temperature": 0.2,
+            "max_completion_tokens": 2048,
+            "top_p": 1.0,
+            "n": 1,
+            "seed": 42
+        }
+        # Remove non-applicable parameters for specific models
+        if "gpt-5" in model_name.lower():
+            del self.default_params["temperature"]
+
     def _test_connection(self, api_key: str, base_url: str):
         """Makes a synchronous test call to the API server to verify connectivity."""
         try:

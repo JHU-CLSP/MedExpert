@@ -221,6 +221,9 @@ class OmissionDetector(APIModel):
     def __init__(self, random_state: int = 42, **kwargs):
         super().__init__(**kwargs)
         self.random_state = random_state
+        self.default_params.update({
+            "seed": self.random_state
+        })
 
     def _get_system_prompt(self) -> str:
         return DETECTION_PROMPT
@@ -235,10 +238,7 @@ class OmissionDetector(APIModel):
         completion = await self.client.chat.completions.create(
             messages=messages,
             model=self.model_name,
-            temperature=0.8,
-            max_tokens=2048,
-            top_p=1.0,
-            seed=self.random_state,
+            **self.default_params
         )
         return completion
 
@@ -279,6 +279,10 @@ class OmissionEvaluator(APIModel):
     def __init__(self, random_state: int = 42, **kwargs):
         super().__init__(**kwargs)
         self.random_state = random_state
+        self.default_params.update({
+            "temperature": 0.0,
+            "seed": self.random_state
+        })
 
     def _get_system_prompt(self) -> str:
         return EVALUATOR_PROMPT
@@ -301,9 +305,7 @@ Model-identified omission(s):
         completion = await self.client.chat.completions.create(
             messages=messages,
             model=self.model_name,
-            temperature=0.0,  # Greedy / deterministic
-            max_tokens=512,
-            seed=self.random_state
+            **self.default_params
         )
         return completion
 
@@ -473,7 +475,7 @@ async def main():
 
     # Save and process the output
     os.makedirs(args.output_dir, exist_ok=True)
-    output_file = os.path.join(args.output_dir, "omission_grader_output.jsonl")
+    output_file = os.path.join(args.output_dir, "omission_zero-shot_output.jsonl")
     with jsonlines.open(output_file, "w") as writer:
         writer.write_all(results)
 
