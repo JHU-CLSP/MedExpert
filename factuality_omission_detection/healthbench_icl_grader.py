@@ -383,19 +383,6 @@ async def main():
         completeness_grader = HealthBenchCompletenessGrader(**grader_args)
         graded_responses = await completeness_grader(augmented_test_data)
 
-        # 5. Print and save the results.
-        # Only print a demo of 2 results to avoid flooding the console
-        logger.info("\n--- Grading Results ---")
-        for response in graded_responses[:2]:
-            grade_info = response['completeness-healthbench']
-            print(f"\nID: {response['id']}")
-            print(f"Score: {grade_info['score']} out of {grade_info['total_points']} points")
-            print("Generated Criteria & Grades:")
-            for i, criteria_item in enumerate(grade_info['meta']):
-                print(f"  - Criterion {i + 1}: {criteria_item['criterion']}")
-                print(f"    - Met?: {criteria_item['criteria_met']}")
-                print(f"    - Explanation: {criteria_item['explanation']}")
-
         output_file = Path(args.output_dir) / "omissions_healthbench-icl_output.jsonl"
         with jsonlines.open(output_file, "w") as writer:
             writer.write_all(graded_responses)

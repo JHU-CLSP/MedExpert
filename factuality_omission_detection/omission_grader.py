@@ -475,7 +475,7 @@ async def main():
 
     # Save and process the output
     os.makedirs(args.output_dir, exist_ok=True)
-    output_file = os.path.join(args.output_dir, "omission_zero-shot_output.jsonl")
+    output_file = os.path.join(args.output_dir, "omissions_zero-shot_output.jsonl")
     with jsonlines.open(output_file, "w") as writer:
         writer.write_all(results)
 
