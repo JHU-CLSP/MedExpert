@@ -20,3 +20,5 @@ dependencies:
     - regex=2025.11.3
     - sentence-transformers=5.1.2
     - pandas=2.3.3
+    - seaborn=0.13.2
+    - matplotlib=3.10.7
