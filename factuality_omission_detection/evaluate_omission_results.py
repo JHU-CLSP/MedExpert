@@ -159,8 +159,12 @@ def main():
         include_groups=False
     )
     results_df["N"] = results_df["N"].astype(int)
-    pd.set_option('display.float_format', '{:.1%}'.format)
-    print(results_df)
+
+    # Log results
+    with pd.option_context('display.float_format', '{:.1%}'.format):
+        s = results_df.to_string()
+        s = s.replace("%", "")
+        logger.info(f"\nOmission Detection Results:\n{s}")
 
     import pdb; pdb.set_trace()
 
