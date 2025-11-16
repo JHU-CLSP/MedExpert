@@ -128,6 +128,7 @@ def load_medexpert_dataset(file_path: str) -> pd.DataFrame:
             "Mild - no action is required": "Mild",
             "Moderate - may negatively impact the patients health if no action is taken": "Moderate",
             "Severe  may require medical intervention by a doctor": "Severe",
+            "Severe - may require medical intervention by a doctor": "Severe",
             "Life-threatening - can be life-threatening without medical intervention": "Life-threatening"
         }
         severity = severity_map[severity]
@@ -139,7 +140,7 @@ def load_medexpert_dataset(file_path: str) -> pd.DataFrame:
     # Hack fix
     err = df[(df.omission_severity > "No Omission") & (df.n_omissions == 0)]
     if not err.empty:
-        logger.warning(f"Found {err.shape[0]} records with severity > 'No Omission' but 0 omissions. Fixing severity to 'No Omission'.")
+        logger.warning(f"Found {err.shape[0]} records with severity > 'No Omission' but 0 omissions. Fixing severity to 'No Omission'.\n{err.index.tolist()}")
         df.loc[err.index, "omission_severity"] = "No Omission"
     return df
 
@@ -285,6 +286,12 @@ def main():
         s = results_df.to_string()
         s = s.replace("%", "")
         logger.info(f"\nOmission Detection Results:\n{s}")
+
+    # Log accuracy per model for All domain and All-Err severity
+    model_acc = merged_df[merged_df["domain"] == "All"].groupby("model", observed=True).apply(
+        lambda df: accuracy_score(df["label"], df["pred_label"])
+    ).sort_values(ascending=False)
+    logger.info(f"\nAccuracy per Model (All Domain, All-Err Severity):\n{model_acc.to_string()}")
 
     # Log examples
     # Pre-selected after manual review of false positive/negative errors
