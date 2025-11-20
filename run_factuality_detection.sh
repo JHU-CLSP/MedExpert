@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python -m medscore.medscore --config medscore_config.yml --debug
+python -m medscore.medscore --config /factuality_omission_detection/medscore_config.yml --debug
