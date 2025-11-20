@@ -23,7 +23,7 @@ Dataset release on Hugging Face:
 
 3. Install the required packages:
    ```bash
-   conda create -f environment.yml
+   conda env create -f environment.yml
    conda activate medexpert
    pip install git+https://github.com/Heyuan9/MedScore.git --no-deps
    ```
