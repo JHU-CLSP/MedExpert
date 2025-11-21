@@ -4,7 +4,7 @@
 
 # --- Main Input/Output Files ---
 # Can be overridden by command line arguments
-input_file: "input_data.json"
+input_file: "data/medexpert-benchmark.jsonl"
 output_dir: "."
 response_key: "response"
 
