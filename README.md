@@ -70,8 +70,12 @@ Here the `topics_file` is optional and corresponding to topics in Appendix table
 
 ## Data Preparation
 
-1. Download the MedExpert dataset from the Hugging Face link using 
+Download the MedExpert dataset from the Hugging Face link using 
 
+```bash
+./run_01_prepare_data.sh
+```
+This script also computes data statistics reported in the the paper
 
 ---
 
@@ -91,7 +95,7 @@ We evaluate two factuality detection systems:
 Both can be run with 
 
 ```bash
-./run_factuality_detection.sh
+./run_02_factuality_detection.sh
 ```
 
 ### Omission Detection
@@ -103,7 +107,7 @@ We evaluate two omission detection systems:
 Both can be run with 
 
 ```bash
-./run_omission_detection.sh
+./run_03_omission_detection.sh
 ```
 
 Note that the `HealthBench-ICL` dataset automatically downloads with the script.
