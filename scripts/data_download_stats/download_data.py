@@ -11,14 +11,14 @@ def download_medexpert(data_dir="./data"):
     # -- Load MedExpert-Benchmark dataset (N=540) --
     # Note: We primarily use this data in our experiments (except for IAA computation)
     dataset = load_dataset("sonal-ssj/MedExpert", "medexpert-benchmark")
-    dataset['train'].to_json(f"{data_dir}/medexpert_benchmark.jsonl")
-    print(f"✓ Saved MedExpert-Benchmark: {len(dataset['train'])} examples at {data_dir}/medexpert_benchmark.jsonl")
+    dataset['train'].to_json(f"{data_dir}/medexpert-benchmark.jsonl")
+    print(f"✓ Saved MedExpert-Benchmark: {len(dataset['train'])} examples at {data_dir}/medexpert-benchmark.jsonl")
     
     # -- Load MedExpert-Benchmark dataset (N=572) --
     # consisting of 540 primary examples plus 32 cases with double annotations for inter-annotator agreement
     dataset_all = load_dataset("sonal-ssj/MedExpert", "medexpert-all")
-    dataset_all['train'].to_json(f"{data_dir}/medexpert_all.jsonl")
-    print(f"✓ Saved MedExpert-All: {len(dataset_all['train'])} examples at {data_dir}/medexpert_all.jsonl")
+    dataset_all['train'].to_json(f"{data_dir}/medexpert-all.jsonl")
+    print(f"✓ Saved MedExpert-All: {len(dataset_all['train'])} examples at {data_dir}/medexpert-all.jsonl")
 
 
 download_medexpert()
