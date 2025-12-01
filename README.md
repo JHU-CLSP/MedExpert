@@ -31,7 +31,7 @@ Dataset release on Hugging Face: https://huggingface.co/datasets/sonal-ssj/MedEx
 
 
 <details>
-<summary>## (Optional) Data Annotation & Pre-processing </summary>
+<summary><h2> (Optional) Data Annotation & Pre-processing </h2> </summary>
 This section not required for MedExpert data or benchmark experiments itself but only if someone wants to annotate data like MedExpert we provide all the scripts & tools for the same. We used John Snow Labs No Tool NLP Interface.
 
 Once you have the interface hosted, click on New Project -> Setup -> Configuration -> Keep clicking on Next button until you reach Customize Configuration -> Select Code tab in customize configuration -> Copy paste the XML config in `scripts/data_preprocessing/JSL_interface.XML`.  -> Save Config.
