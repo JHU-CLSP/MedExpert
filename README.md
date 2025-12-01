@@ -29,7 +29,9 @@ Dataset release on Hugging Face: https://huggingface.co/datasets/sonal-ssj/MedEx
    pip install git+https://github.com/Heyuan9/MedScore.git --no-deps
    ```
 
-## (Optional) Data Annotation & Pre-processing 
+
+<details>
+<summary>## (Optional) Data Annotation & Pre-processing </summary>
 This section not required for MedExpert data or benchmark experiments itself but only if someone wants to annotate data like MedExpert we provide all the scripts & tools for the same. We used John Snow Labs No Tool NLP Interface.
 
 Once you have the interface hosted, click on New Project -> Setup -> Configuration -> Keep clicking on Next button until you reach Customize Configuration -> Select Code tab in customize configuration -> Copy paste the XML config in `scripts/data_preprocessing/JSL_interface.XML`.  -> Save Config.
@@ -67,7 +69,7 @@ topics_file = f"{project_dir}/sample_data/medexpert_questions_with_topics.jsonl"
 ```
 
 Here the `topics_file` is optional and corresponding to topics in Appendix table of the paper.
-
+</details>
 ## Data Preparation
 
 Download the MedExpert dataset from the Hugging Face link using 
