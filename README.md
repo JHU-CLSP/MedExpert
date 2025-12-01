@@ -70,6 +70,7 @@ topics_file = f"{project_dir}/sample_data/medexpert_questions_with_topics.jsonl"
 
 Here the `topics_file` is optional and corresponding to topics in Appendix table of the paper.
 </details>
+
 ## Data Preparation
 
 Download the MedExpert dataset from the Hugging Face link using 
