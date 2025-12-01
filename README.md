@@ -1,9 +1,9 @@
 # MedExpert
 Code for the "MedExpert: An Expert-Annotated Dataset for Medical Chatbot Evaluation" paper at Machine Learning for Health (ML4H) 2025.
 
-Paper Link: 
+Paper Link: https://openreview.net/pdf?id=rkLAzDPlqL
 
-Dataset release on Hugging Face: 
+Dataset release on Hugging Face: https://huggingface.co/datasets/sonal-ssj/MedExpert
 
 ## Overview
 
