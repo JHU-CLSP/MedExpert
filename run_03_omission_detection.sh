@@ -31,7 +31,7 @@ echo "Zero-shot Omission Detection completed."
 echo "Starting HealthBench ICL evaluation..."
 
 # Prepare the HealthBench ICL dataset file
-if [ ! -f "${MEDEXPERT_REPO}/scripts/factuality_omission_detection/healthbench_icl_dataset.jsonl" ]; then
+if [ ! -f "${MEDEXPERT_REPO}/factuality_omission_detection/healthbench_icl_dataset.jsonl" ]; then
   echo "Preparing HealthBench ICL dataset..."
   python "${MEDEXPERT_REPO}/scripts/factuality_omission_detection/prepare_healthbench_icl_data.py"
 fi
@@ -42,7 +42,7 @@ python "${MEDEXPERT_REPO}/scripts/factuality_omission_detection/healthbench_icl_
   --server_path "https://api.openai.com/v1" \
   --api_key "${OPENAI_API_KEY}" \
   --similarity_model "all-mpnet-base-v2" \
-  --icl_dataset_file "${MEDEXPERT_REPO}/scripts/factuality_omission_detection/healthbench_icl_dataset.jsonl" \
+  --icl_dataset_file "${MEDEXPERT_REPO}/factuality_omission_detection/healthbench_icl_dataset.jsonl" \
   --cache_embeddings \
   --output_dir "${OUTPUT_DIR}"
 
