@@ -78,7 +78,7 @@ Download the MedExpert dataset from the Hugging Face link using
 ```bash
 ./run_01_prepare_data.sh
 ```
-This script also computes data statistics reported in the the paper
+This script also computes data statistics reported in the the paper.
 
 ---
 
